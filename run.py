@@ -15,16 +15,31 @@ class Board:
         self.guess = []
         self.ships =[]
 
-    
-    #def guess(self,x,y):
+    def print(self):
+        for row in self.board:
+            print(" ".join(row))
+    def guess(self,x,y):
+        self.guesses.append((x,y))
+        self.board[x][y] = "X"
+        if(x,y) in self.ships:
+            self.board[x][y]= "*"
+            return "HIT"
+        else:
+            return "MISS"
     
    
 
-    #def add_ship(self,x,y type = 'COMPUTER'):
+    def add_ship(self, x, y, type="COMPUTER"):
+        if len(self.ships) >= self.num_ships:
+            print("Error: you cannot add any more ships")
+        else:
+            self.ships.append((x,y))
+            if self.type == "PLAYER":
+                self.board[x][y] = "@"
     
-    #def random_point(size):
+    def random_point(size):
    
-    #return randint(0, size -1)
+        return randint(0, size -1)
     
     #def populate_board():
     

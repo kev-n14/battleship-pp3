@@ -20,6 +20,20 @@ class Board:
         for row in self.board:
             print(" ".join(row))
     
+    def guess(self,x,y):
+    
+    
+    def add_ship(self,x,y type = 'COMPUTER'):
+    
+    def random_point(size):
+    
+    def populate_board():
+    
+    def make_guess():
+    
+    def play_game(compBoard,playerBoard):
+    
+    
     def game():
         """
 

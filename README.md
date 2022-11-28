@@ -1,8 +1,44 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Batleship Game
+## How To Play
+-----
+## Features
+-----
+### Existing Features
+* 
 
-Welcome USER_NAME,
+### Future Features
+* 
+## Data Model
+-----
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **August 17, 2021**
+## Testing
+-----
+
+
+* 
+
+### Bugs
+Solved Bugs
+* 
+### Remaining Bugs
+* 
+### Validator Testing
+* PEP8
+
+
+## Deployment
+-----
+* 
+## Credits
+-----
+* 
+
+
+
+
+
+
+
 
 ## Reminders
 

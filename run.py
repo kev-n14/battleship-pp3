@@ -1,86 +1,104 @@
 import random
-scores = {"COMPUTER": 0 , "PLAYER" :0}
+scores = {"computer": 0 , "player" :0}
+#CONSTANT VARIABLES
 
-class Board:
+
+
+USER_BOARD = [[" "] *8 for i in range(8)]
+PC_BOARD = [[" "] *8 for i in range(8)]
+LENGTH_OF_SHIPS = [2,3]  
+LETERS_TO_NUM = {'A':0, 'B':1, 'C':2, 'D':3, 'E':4, 'F':5, 'G':6, 'H':7}
+
+
+
+
+def print_board(board):
+    return print(" A B C D E F G H")
+    print(" ","-"*10)
+    print(" ", "-"*16)
+    row_number = 1
+    for row in board:
+        print("%d|%s|" % (row_number, "|".join(row)))
+        row_number += 1
+
+def location_ships(board):
+    for ship_size in LENGTH_OF_SHIPS:
+        while True:
+            if board == PC_BOARD:
+                postion, row ,column = random.choice(["H", "V"]), random.randint(0,7),random.randint(0,7)
+
+                #if check_ship_fit(ship_length, row,column,postion):
+                    #if ship_overlaps(board,row,column,postion,ship_size)== False:
+
+                if postion=="H":
+                    for i in range(column,column + ship_size):
+                        board[row][i] = "O"
+                else:
+                    for i in range(row, row + ship_size):
+                        board[i][column] = "O"
+                break
+            else:
+                place_ship = True
+                print('Please place the ship with a length of ' + str(ship_size))
+                #row, column, orientation = user_input(place_ship)
+
+                #if check_ship_fit(ship_length, row, column, orientation):
+
+                    #if ship_overlaps(board, row, column, orientation, ship_length) == False:
+
+                if orientation == "H":
+                    for i in range(column, column + ship_size):
+                        board[row][i] = "O"
+                else:
+                    for i in range(row, row + ship_size):
+                        board[i][column] = "O"
+                print_board(PLAYER_BOARD)
+                break
+
+
+
+
+def game():
     """
 
     """
-    def __init__( self,size, num_ships,name, type):
+    size = 5
+    num_ships = 4
+    scores["computer"]=0
+    scores["player"] = 0
+    print("-"*40)
+    print("      ***** BATTLESHIPS *****     ")
+    print("-"*40)
+    location_ships(PC_BOARD)
+    print_board(USER_BOARD)
+    location_ships(USER_BOARD)
 
-        self.size = size
-        self.board = [["." for x in range(size)] for y in range(size)]
-        self.num_ships = num_ships
-        self.name = name
-        self.type = type
-        self.guess = []
-        self.ships =[]
+    #size = 2
+    #num_ships= 2
+    #scores['COMPUTER'] = 0
+    #scores['PLAYER'] = 0
 
-    def print(self):
-        for row in self.board:
-            print(" ".join(row))
-    def guess(self,x,y):
-        self.guesses.append((x,y))
-        self.board[x][y] = "X"
-        if(x,y) in self.ships:
-            self.board[x][y]= "*"
-            return "HIT"
-        else:
-            return "MISS"
     
-   
+    
+    #print()
+    
+    #for col_num in range(1):
+        #   print('  | A | B | C | D | E | F | G | H |')
 
-    def add_ship(self, x, y, type="COMPUTER"):
-        if len(self.ships) >= self.num_ships:
-            print("Error: you cannot add any more ships")
-        else:
-            self.ships.append((x,y))
-            if self.type == "PLAYER":
-                self.board[x][y] = "@"
-    
-    def random_point(size):
-   
-        return randint(0, size -1)
-    
-    #def populate_board():
-    
-    #def make_guess():
-    
-    #def play_game(compBoard,playerBoard):
-    
-    
-    def game():
-        """
-
-        """
-
-        size = 2
-        num_ships= 2
-        scores['COMPUTER'] = 0
-        scores['PLAYER'] = 0
-
-        print("-"*40)
-        print("      ***** BATTLESHIPS *****     ")
-        print("-"*40)
+        #  for row_num in range(1,9):
+        #     print("  ","---"*11)
+        #    print(row_num,"|",  "  | "*8)
+        #print("%d|%s|" % (row_num, "|".join(row)))
         
-        print()
-        
-        for col_num in range(1):
-            print('  | A | B | C | D | E | F | G | H |')
-
-            for row_num in range(1,9):
-                print("  ","---"*11)
-                print(row_num,"|",  "  | "*8)
-                #print("%d|%s|" % (row_num, "|".join(row)))
-            
-        print()
-        print('-'*40)
-        print(f"Board size: {size}. number of ships {num_ships}")
-        print("-"*40)
-        compBoard = Board(size, num_ships, 'computer', type = "COMPUTER")
-        playerBoard = Board(size, num_ships, user_name, type= "PLAYER") 
+    #print()
+    #print('-'*40)
+    #print(f"Board size: {size}. number of ships {num_ships}")
+    #print("-"*40)
+    #compBoard = Board(size, num_ships, 'computer', type = "COMPUTER")
+    #playerBoard = Board(size, num_ships, user_name, type= "PLAYER") 
 
 
-    game()
-        
+game()
+    
         
 

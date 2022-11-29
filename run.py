@@ -1,9 +1,6 @@
 import random
 scores = {"computer": 0 , "player" :0}
 #CONSTANT VARIABLES
-
-
-
 USER_BOARD = [[" "] *8 for i in range(8)]
 PC_BOARD = [[" "] *8 for i in range(8)]
 LENGTH_OF_SHIPS = [2,3]  
@@ -27,36 +24,90 @@ def location_ships(board):
             if board == PC_BOARD:
                 postion, row ,column = random.choice(["H", "V"]), random.randint(0,7),random.randint(0,7)
 
-                #if check_ship_fit(ship_length, row,column,postion):
-                    #if ship_overlaps(board,row,column,postion,ship_size)== False:
+                #if does_ship_fit(ship_length, row,column,postion):
+                    #if ship_extends_limit(board,row,column,postion,ship_size)== False:
 
-                if postion=="H":
-                    for i in range(column,column + ship_size):
-                        board[row][i] = "O"
-                else:
-                    for i in range(row, row + ship_size):
-                        board[i][column] = "O"
-                break
+                        if postion=="H":
+                            for i in range(column,column + ship_size):
+                                board[row][i] = "O"
+                    else:
+                        for i in range(row, row + ship_size):
+                            board[i][column] = "O"
+                    break
             else:
                 place_ship = True
                 print('Please place the ship with a length of ' + str(ship_size))
-                #row, column, orientation = user_input(place_ship)
+                row, column, postion = user_input(place_ship)
 
-                #if check_ship_fit(ship_length, row, column, orientation):
+                #if does_ship_fit(ship_size, row, column, postion):
 
-                    #if ship_overlaps(board, row, column, orientation, ship_length) == False:
+                    #if ship_extends_limit(board, row, column, postion, ship_size) == False:
 
-                if orientation == "H":
-                    for i in range(column, column + ship_size):
-                        board[row][i] = "O"
+                        if postion == "H":
+                            for i in range(column, column + ship_size):
+                                board[row][i] = "O"
                 else:
                     for i in range(row, row + ship_size):
                         board[i][column] = "O"
-                print_board(PLAYER_BOARD)
+                print_board(USER_BOARD)
                 break
 
+def user_input(place_ship):
+    if place_ship == True:
+        while True:
+            try:
+                postion = input("Please Enter Positon of ship Horizontal or Vertical(H or V): ").upper()
+                if postion == "H" or postion == "V":
+                    break
+            except TypeError:
+                print('Enter a valid postion H or V')
+        while True:
+            try:
+                row = input("Enter the row 1-8 of the ship: ")
+                if row in '12345678':
+                    row = int(row) - 1
+                    break
+            except ValueError:
+                print('Enter a valid letter between 1-8')
+        while True:
+            try:
+                column = input("Enter the column of the ship: ").upper()
+                if column in 'ABCDEFGH':
+                    column = LETTERS_TO_NUM[column]
+                    break
+            except KeyError:
+                print('Enter a valid letter between A-H')
+        return row, column, postion
+    else:
+        while True:
+            try:
+                row = input("Enter the row 1-8 of the ship: ")
+                if row in '12345678':
+                    row = int(row) - 1
+                    break
+            except ValueError:
+                print('Enter a valid letter between 1-8')
+        while True:
+            try:
+                column = input("Enter the column of the ship: ").upper()
+                if column in 'ABCDEFGH':
+                    column = LETTERS_TO_NUM[column]
+                    break
+            except KeyError:
+                print('Enter a valid letter between A-H')
+        return row, column 
+    
 
 
+
+
+
+
+
+
+
+#def does_ship_fit():
+#def ship_extends_limit():
 
 def game():
     """

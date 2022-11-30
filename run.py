@@ -106,8 +106,30 @@ def user_input(place_ship):
 
 
 
-#def does_ship_fit():
-#def ship_extends_limit():
+def does_ship_fit(LENGTH_OF_SHIPS, row , column, postion):
+    if postion == "H":
+        if column + LENGTH_OF_SHIPS > 8:
+            return False
+        else:
+            return True
+    else:
+        if row + LENGTH_OF_SHIPS >8:
+            return False
+        else:
+            return True
+
+
+def ship_extends_limit(board, row, column, postion,ship_size):
+    if postion == "H":
+        for i in range(column,column + ship_size)
+        if board[row][i] == "X":
+            return True
+    else:
+        for i in range(row, row + ship_size):
+            if board[i][column] == "X":
+                return True
+    return False
+            
 
 def game():
     """

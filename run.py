@@ -2,7 +2,10 @@ import random
 scores = {"computer": 0 , "player" :0}
 #CONSTANT VARIABLES
 USER_BOARD = [[" "] *8 for i in range(8)]
+USER_MOVE_BOARD = [[" "] *8 for i in range(8)]
+
 PC_BOARD = [[" "] *8 for i in range(8)]
+PC_MOVE_BOARD = [[" "] *8 for i in range(8)]
 LENGTH_OF_SHIPS = [2,3]  
 LETERS_TO_NUM = {'A':0, 'B':1, 'C':2, 'D':3, 'E':4, 'F':5, 'G':6, 'H':7}
 
@@ -24,8 +27,8 @@ def location_ships(board):
             if board == PC_BOARD:
                 postion, row ,column = random.choice(["H", "V"]), random.randint(0,7),random.randint(0,7)
 
-                #if does_ship_fit(ship_length, row,column,postion):
-                    #if ship_extends_limit(board,row,column,postion,ship_size)== False:
+                if does_ship_fit(ship_length, row,column,postion):
+                    if ship_extends_limit(board,row,column,postion,ship_size)== False:
 
                         if postion=="H":
                             for i in range(column,column + ship_size):
@@ -39,9 +42,9 @@ def location_ships(board):
                 print('Please place the ship with a length of ' + str(ship_size))
                 row, column, postion = user_input(place_ship)
 
-                #if does_ship_fit(ship_size, row, column, postion):
+                if does_ship_fit(ship_size, row, column, postion):
 
-                    #if ship_extends_limit(board, row, column, postion, ship_size) == False:
+                    if ship_extends_limit(board, row, column, postion, ship_size) == False:
 
                         if postion == "H":
                             for i in range(column, column + ship_size):
@@ -119,17 +122,53 @@ def does_ship_fit(LENGTH_OF_SHIPS, row , column, postion):
             return True
 
 
-def ship_extends_limit(board, row, column, postion,ship_size):
+def ship_extends_limit(board, row, column, postion, ship_size):
     if postion == "H":
-        for i in range(column,column + ship_size)
-        if board[row][i] == "X":
-            return True
+        for i in range(column, column + ship_size):
+            if board[row][i] == "X":
+                return True
     else:
         for i in range(row, row + ship_size):
             if board[i][column] == "X":
                 return True
     return False
-            
+
+def hit_counter(board):
+    count = 0
+    for row in board:
+        for column in row:
+            if column =="X":
+                count +=1
+    return count   
+
+def move(board):
+    if board == USER_MOVE_BOARD: #or board == PC_MOVE_BOARD:
+        row, column = user_input(USER_MOVE_BOARD)
+        if board[row][column] == "-":
+            turn(board)
+        elif board[row][column] == "X":
+            turn(board)
+            print("\n****** THAT WAS A HIT *******\n")
+        elif COMPUTER_BOARD[row][column] == "X":
+                    board[row][column] = "X"
+        else: 
+            board[row][column]= "-"
+            print("\n****** You MISSED *******\n")
+        
+    elif  board == PC_MOVE_BOARD:
+        row, column = random.randint(0, 7), random.randint(0, 7)
+        if board[row][column] == "-":
+            turn(board)
+        elif board[row][column] == "X":
+            turn(board)
+        elif PLAYER_BOARD[row][column] == "X":
+            board[row][column] = "X"
+        else:
+            board[row][column] = "-"
+            print("\n****** The Computer MISSED *******\n")
+
+
+
 
 def game():
     """
@@ -137,7 +176,7 @@ def game():
     """
     size = 5
     num_ships = 4
-    scores["computer"]=0
+    scores["computer"] = 0
     scores["player"] = 0
     print("-"*40)
     print("      ***** BATTLESHIPS *****     ")

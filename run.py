@@ -21,7 +21,7 @@ def print_board(board):
     for row in board:
         print("%d|%s|" % (row_number, "|".join(row)))
         row_number += 1
-    
+    print(" ")
 
 def location_ships(board):
     for ship_size in NUMBER_OF_SHIPS:
@@ -61,7 +61,7 @@ def user_input(location_ship):
     if location_ship == True:
         while True:
             try:
-                postion = input("Please Enter Positon of ship Horizontal or Vertical (H or V): ").upper()
+                postion = input("Please Enter Positon of ship Horizontal or Vertical (H or V): \n").upper()
                 if postion == "H" or postion == "V":
                     break
             except TypeError:
@@ -191,7 +191,7 @@ def game():
     print("-"*70)
     
     location_ships(PC_BOARD)
-    print_board(PC_BOARD)
+    #print_board(PC_BOARD)
     print_board(USER_BOARD) 
     location_ships(USER_BOARD)
 

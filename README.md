@@ -20,6 +20,7 @@ The winner is the player who sinks all of their opponent's battleships first.
     * the computers ships are randomly placed on the board.
     * The Player can not see where the Comptuer's ships are.
 * Accepts input from Player
+* allows player to input name.
 * Allows the player to position ships on board.
 * Play against Computer
 * Ships are differnt sizes.
@@ -31,15 +32,20 @@ The winner is the player who sinks all of their opponent's battleships first.
     * User/computer cannot select same coordinates twice.
 
 ### Future Features
-*
+* Add message to display when the player hit a ship
+* Improve graphics for user interface
 ## Data Model
 -----
-
+ I decided to 
 ## Testing
 -----
-
-
-* 
+I have manually tested this project by :
+* passed the code through PEP8 Code Institute validator - no major errors were detected
+    * A few minor errors.
+* Passing it invalid values that such as strings when numbers are expected, numbers when a string is expected.
+* positing the ships out of the parameters of the board.
+* Placing two ships in the same location.
+* Testing it in my local terminal and the Code Institute Heroku terminal.
 
 ### Bugs
 Solved Bugs
@@ -47,7 +53,8 @@ Solved Bugs
 ### Remaining Bugs
 * 
 ### Validator Testing
-* PEP8
+* [PEP8 Code Institute validator:] (https://pep8ci.herokuapp.com/#)
+    * A few minor errors for invalid sequence for the Battleship logo
 
 
 ## Deployment
@@ -55,4 +62,6 @@ Solved Bugs
 * 
 ## Credits
 -----
+* Code Institute for the deployment terminal and template.
+* Wikipedia for details of the Battleships game
 * 

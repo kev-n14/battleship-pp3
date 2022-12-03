@@ -1,23 +1,24 @@
 import random
 
-#CONSTANT VARIABLES
-USER_BOARD = [[" "] *8 for i in range(8)]
-USER_MOVE_BOARD = [[" "] *8 for i in range(8)]
-PC_BOARD = [[" "] *8 for i in range(8)]
-PC_MOVE_BOARD = [[" "] *8 for i in range(8)]
-NUMBER_OF_SHIPS = [2, 3]  
-LETTERS_TO_NUM = {'A':0, 'B':1, 'C':2, 'D':3, 'E':4, 'F':5, 'G':6, 'H':7}
+# CONSTANT VARIABLES
+USER_BOARD = [[" "] * 8 for i in range(8)]
+USER_MOVE_BOARD = [[" "] * 8 for i in range(8)]
+PC_BOARD = [[" "] * 8 for i in range(8)]
+PC_MOVE_BOARD = [[" "] * 8 for i in range(8)]
+NUMBER_OF_SHIPS = [2, 3]
+LETTERS_TO_NUM = {'A': 0, 'B': 1, 'C': 2, 'D': 3, 'E': 4, 'F': 5, 'G': 6, 'H': 7}
+
 
 def print_board(board):
-    print(" ","-"*16)
+    print(" ", "-"*16)
     print(' |A|B|C|D|E|F|G|H|')
     print(" ", "-"*16)
-    
     row_number = 1
     for row in board:
         print("%d|%s|" % (row_number, "|".join(row)))
         row_number += 1
     print(" ")
+
 
 def location_ships(board, name):
     for ship_size in NUMBER_OF_SHIPS:
@@ -26,7 +27,7 @@ def location_ships(board, name):
                 position, row, column = random.choice(
                     ["H", "V"]), random.randint(0, 7), random.randint(0, 7)
                 if does_ship_fit(ship_size, row, column, position):
-                    if ship_extends_limit(board, row, column, position, ship_size) == False:
+                    if ship_extends_limit(board, row, column, position, ship_size) is False:
                         if position == "H":
                             for i in range(column, column + ship_size):
                                 board[row][i] = "O"
@@ -39,7 +40,7 @@ def location_ships(board, name):
                 print('Place the ship with a length of ' + str(ship_size))
                 row, column, position = user_input(location_ship, name)
                 if does_ship_fit(ship_size, row, column, position):
-                    if ship_extends_limit(board, row, column, position, ship_size) == False:
+                    if ship_extends_limit(board, row, column, position, ship_size) is False:
                         if position == "H":
                             for i in range(column, column + ship_size):
                                 board[row][i] = "O"
@@ -48,13 +49,15 @@ def location_ships(board, name):
                                 board[i][column] = "O"
                         print_board(USER_BOARD)
                         break
+
+
 def user_name():
     user_name = input("Please Enter Name: \n")
     return user_name
 
+
 def user_input(location_ship, name):
-    
-    if location_ship == True:
+    if location_ship is True:
         while True:
             try:
                 postion = input(f"{name}, Please Enter Positon of ship Horizontal or Vertical (H or V): \n").upper()
@@ -96,9 +99,10 @@ def user_input(location_ship, name):
                     break
             except KeyError:
                 print('Enter a valid letter between A-H')
-        return row, column 
+        return row, column
 
-def does_ship_fit(NUMBER_OF_SHIPS, row , column, postion):
+
+def does_ship_fit(NUMBER_OF_SHIPS, row, column, postion):
     if postion == "H":
         if column + NUMBER_OF_SHIPS > 8:
             return False
@@ -110,16 +114,18 @@ def does_ship_fit(NUMBER_OF_SHIPS, row , column, postion):
         else:
             return True
 
+
 def ship_extends_limit(board, row, column, postion, ship_size):
     if postion == "H":
         for i in range(column, column + ship_size):
-            if board[row][i] == "X":
+            if board[row][i] == "O":
                 return True
     else:
         for i in range(row, row + ship_size):
-            if board[i][column] == "X":
+            if board[i][column] == "O":
                 return True
     return False
+
 
 def hit_counter(board):
     count = 0
@@ -127,33 +133,40 @@ def hit_counter(board):
         for column in row:
             if column == "X":
                 count += 1
-    return count   
+    return count
 
-def move(board,name):
+
+def move(board, name):
     if board == USER_MOVE_BOARD:
-        row, column = user_input(USER_MOVE_BOARD,name)
+        row, column = user_input(USER_MOVE_BOARD, name)
         if board[row][column] == "-":
-            move(board)
+            print("You already tried those coordinates. Try Again")
+            move(board, name)
         elif board[row][column] == "X":
-            move(board)
-            print(f"\n****** THAT WAS A HIT {name} *******\n")
-        elif PC_BOARD[row][column] == "X":
+            print("You already tried those coordinates. Try Again")
+            move(board, name)
+            
+        elif PC_BOARD[row][column] == "O":
             board[row][column] = "X"
+            print(f"\n****** THAT WAS A HIT {name} *******\n")
 
         else:
             board[row][column] = "-"
             print(f"\n****** You MISSED {name} *******\n")
+
     elif board == PC_MOVE_BOARD:
         row, column = random.randint(0, 7), random.randint(0, 7)
         if board[row][column] == "-":
-            move(board)
+            move(board, name)
         elif board[row][column] == "X":
-            move(board)
-        elif USER_BOARD[row][column] == "X":
+            move(board, name)
+        elif USER_BOARD[row][column] == "O":
             board[row][column] = "X"
+            print("***** The Computer Got A Hit ******")
         else:
             board[row][column] = "-"
             print("\n****** The Computer MISSED *******\n")
+
 
 def game():
     """
@@ -168,36 +181,41 @@ def game():
     print(" |____/_/    \_\_|     |_|  |______|______|_____/|_|  |_|_____|_|")
     print(" ")
     print("-"*70)
-    
-    
     name = user_name()
-   
-
-    location_ships(PC_BOARD,name)
+    location_ships(PC_BOARD, name)
     print_board(PC_BOARD)
     print(f"{name}\'s Board")
-    print_board(USER_BOARD) 
-    location_ships(USER_BOARD,name)
-
+    print_board(USER_BOARD)
+    location_ships(USER_BOARD, name)
+    count = 1
     while True:
         while True:
+            
+            print(f" ----- ROUND {count} -----")
+            print(" ")
+            print(f"{name} Score: {hit_counter(USER_MOVE_BOARD)} vs Computer Score: {hit_counter(PC_MOVE_BOARD)}")
             print(f"\n -- {name}'s Move --\n")
-            print("Your Move \n")
-            print(f"{name}\'s Board")
+            print(f"{name}\'s Guess Board")
             print_board(USER_MOVE_BOARD)
-            move(USER_MOVE_BOARD,name)
+            move(USER_MOVE_BOARD, name)
+            print(f"{name} score: {hit_counter(USER_MOVE_BOARD)} ")
+            count += 1
             break
         if hit_counter(USER_MOVE_BOARD) == 5:
-            print("*"*10, f"{name} IS THE WINNER" ,"*"*10)
+            print("*"*10, f"{name} IS THE WINNER ", "*"*10)
+            print("*"*10, f"Congratulations {name} ", "*"*10)
             break
 
         while True:
             print("\n-- Computer Turn --\n")
-            print("The Computers Board")
-            move(PC_MOVE_BOARD,name)
+            print(f"Computer\'s Guess Board")
+            move(PC_MOVE_BOARD, name)
             break
         print_board(PC_MOVE_BOARD)
         if hit_counter(PC_MOVE_BOARD) == 5:
-            print("*"*10, " THE COMPUTER WIN'S ","*"*10)
+            print("*"*10, " THE COMPUTER WIN'S ", "*"*10)
+            print("*"*10, f" BETTER LUCK NEXT TIME {name} ", "*"*10)
             break
+
+
 game()

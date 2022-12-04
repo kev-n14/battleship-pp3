@@ -5,7 +5,7 @@ USER_BOARD = [[" "] * 8 for i in range(8)]
 USER_MOVE_BOARD = [[" "] * 8 for i in range(8)]
 PC_BOARD = [[" "] * 8 for i in range(8)]
 PC_MOVE_BOARD = [[" "] * 8 for i in range(8)]
-NUMBER_OF_SHIPS = [2, 3]
+NUMBER_OF_SHIPS = [2, 3, 3, 4, 5]
 LETTERS_TO_NUM = {'A': 0, 'B': 1, 'C': 2, 'D': 3, 'E': 4, 'F': 5, 'G': 6, 'H': 7}
 
 
@@ -201,7 +201,7 @@ def game():
             print(f"{name} score: {hit_counter(USER_MOVE_BOARD)} ")
             count += 1
             break
-        if hit_counter(USER_MOVE_BOARD) == 5:
+        if hit_counter(USER_MOVE_BOARD) == 17:
             print("*"*10, f"{name} IS THE WINNER ", "*"*10)
             print("*"*10, f"Congratulations {name} ", "*"*10)
             break
@@ -212,7 +212,7 @@ def game():
             move(PC_MOVE_BOARD, name)
             break
         print_board(PC_MOVE_BOARD)
-        if hit_counter(PC_MOVE_BOARD) == 5:
+        if hit_counter(PC_MOVE_BOARD) == 17:
             print("*"*10, " THE COMPUTER WIN'S ", "*"*10)
             print("*"*10, f" BETTER LUCK NEXT TIME {name} ", "*"*10)
             break

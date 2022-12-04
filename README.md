@@ -34,24 +34,31 @@ The winner is the player who sinks all of their opponent's battleships first.
 ### Future Features
 * Add message to display when the player hit a ship
 * Improve graphics for user interface
+* add option for multiplayer
 ## Data Model
 -----
- I decided to 
+ I decided to declare globally four Boards, Two for the player and two for the Computer, each have a board that stores the location of their ships(e.g USER_BOARD and PC_BOARD) and another board to store their moves made (e.g USER_MOVE_BOARD and PC_MOVE_BOARD)
+
+ The Board's have a fixed size i.e 8 x 8 ,and number of ships i.e 5.
+
+ The program has many functions to enable the game to run, such as game() that when called displays the Battleship logo, user board and calls other function to enable the player to populate the board.
 ## Testing
 -----
 I have manually tested this project by :
 * passed the code through PEP8 Code Institute validator - no major errors were detected
     * A few minor errors.
 * Passing it invalid values that such as strings when numbers are expected, numbers when a string is expected.
-* positing the ships out of the parameters of the board.
+* Positing the ships out of the parameters of the board.
 * Placing two ships in the same location.
 * Testing it in my local terminal and the Code Institute Heroku terminal.
 
 ### Bugs
-Solved Bugs
-* 
-### Remaining Bugs
-* 
+#### Solved Bugs
+* The Player could enter the same cordinates muliple times and the program would accept this as a turn for the player. I added an if else statement to check to see if the place on the board was equal to "-" or "X". if so the player is asked to take their go again
+
+#### Remaining Bugs
+* As of the latest version of this project no known bugs have been found.
+
 ### Validator Testing
 * [PEP8 Code Institute validator:] (https://pep8ci.herokuapp.com/#)
     * A few minor errors for invalid sequence for the Battleship logo
@@ -59,7 +66,26 @@ Solved Bugs
 
 ## Deployment
 -----
-* 
+The Project was deployed using Code Institute's mock terminal for Heroku.
+* Steps to be taken for deployment:
+    * Fork or clone this respository
+    * Then click on <mark>Create new app</mark> button
+    * Choose a unique name for app and your region
+    * Click <mark>Create app</mark> button
+    * On the ribbon tab go to <mark>Settings</mark> tab
+    * Scroll down to <mark>Config Vars</mark> -> click on <mark>Reveal Config Vars</mark> button
+    * Set key to <mark>PORT</mark> and value to <mark>8000</mark>
+    * Then scroll down to <mark>Buildpacks</mark> -> click on <mark>Add buildpack</mark>
+    * Select <mark>Python</mark> and <mark>Node.js</mark> (in this order)!!
+    * Go to <mark>Deploy</mark> section 
+    * Scroll down to <mark>Deployment Method</mark> section -> Choose your preferred deployment method
+    * Then search for respository from the <mark>Connect to</mark> section and then click connect 
+    * Choose either Enable Automatic Deploys is on or off
+    * Choose branch to deploy in Manual deploy section 
+    * Then click <mark>Deploy</mark> Button
+
+
+
 ## Credits
 -----
 * Code Institute for the deployment terminal and template.

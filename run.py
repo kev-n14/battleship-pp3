@@ -67,7 +67,7 @@ def user_input(location_ship, name):
                 print('Enter a valid postion H or V')
         while True:
             try:
-                row = input("Enter the row 1-8 of the ship: ")
+                row = input("Enter the row 1-8 of the ship: \n")
                 if row in '12345678':
                     row = int(row) - 1
                     break
@@ -75,7 +75,7 @@ def user_input(location_ship, name):
                 print('Enter a valid number between 1-8')
         while True:
             try:
-                column = input("Enter the letter column of the ship: ").upper()
+                column = input("Enter the letter column of the ship: \n").upper()
                 if column in 'ABCDEFGH':
                     column = LETTERS_TO_NUM[column]
                     break
@@ -85,7 +85,7 @@ def user_input(location_ship, name):
     else:
         while True:
             try:
-                row = input("Enter the row 1-8 of the ship: ")
+                row = input("Enter the row 1-8 of the ship: \n")
                 if row in '12345678':
                     row = int(row) - 1
                     break
@@ -93,7 +93,7 @@ def user_input(location_ship, name):
                 print('Enter a valid number between 1-8')
         while True:
             try:
-                column = input("Enter the column of the ship: ").upper()
+                column = input("Enter the column of the ship: \n").upper()
                 if column in 'ABCDEFGH':
                     column = LETTERS_TO_NUM[column]
                     break

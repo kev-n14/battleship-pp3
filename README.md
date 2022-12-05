@@ -70,19 +70,23 @@ The Project was deployed using Code Institute's mock terminal for Heroku.
 * Steps to be taken for deployment:
     * Fork or clone this respository
     * Then click on <mark>Create new app</mark> button
+    ![Create new app](images/deploy_step1.png)
     * Choose a unique name for app and your region
     * Click <mark>Create app</mark> button
     * On the ribbon tab go to <mark>Settings</mark> tab
+    ![Settings](images/deploy_step2.png)
     * Scroll down to <mark>Config Vars</mark> -> click on <mark>Reveal Config Vars</mark> button
     * Set key to <mark>PORT</mark> and value to <mark>8000</mark>
     * Then scroll down to <mark>Buildpacks</mark> -> click on <mark>Add buildpack</mark>
     * Select <mark>Python</mark> and <mark>Node.js</mark> (in this order)!!
+    ![Buildpacks](images/deploy_step4.png)
     * Go to <mark>Deploy</mark> section 
     * Scroll down to <mark>Deployment Method</mark> section -> Choose your preferred deployment method
     * Then search for respository from the <mark>Connect to</mark> section and then click connect 
     * Choose either Enable Automatic Deploys is on or off
     * Choose branch to deploy in Manual deploy section 
     * Then click <mark>Deploy</mark> Button
+    ![Deploy](images/deploy_step5.png)
 
 
 

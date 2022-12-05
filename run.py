@@ -193,7 +193,8 @@ def game():
             
             print(f" ----- ROUND {count} -----")
             print(" ")
-            print(f"{name} Score: {hit_counter(USER_MOVE_BOARD)} vs Computer Score: {hit_counter(PC_MOVE_BOARD)}")
+            hits_needed = sum(NUMBER_OF_SHIPS)
+            print(f"{name} Score: {hit_counter(USER_MOVE_BOARD)}/{hits_needed} vs Computer Score: {hit_counter(PC_MOVE_BOARD)}/{hits_needed}")
             print(f"\n -- {name}'s Move --\n")
             print(f"{name}\'s Guess Board")
             print_board(USER_MOVE_BOARD)
